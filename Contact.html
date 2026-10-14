@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Service client | Dassault Aviation</title>
+    <meta name="description" content="Service client de la boutique Dassault Aviation." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+    <link href="static/styleG.css" rel="stylesheet" />
+    <script src="static/jeu.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="conteneur header-inner">
+        <a class="marque" href="index.html"><strong>DASSAULT</strong><span>Aviation</span></a>
+        <nav class="header-nav" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="Avions.html">Avions</a><a href="Missiles.html">Missiles</a><a href="Recherche.html">Comparatif</a><a href="Contact.html" aria-current="page">Service client</a></nav>
+      </div>
+    </header>
+
+    <main>
+    <section class="banniere">
+      <div class="conteneur">
+        <p class="surtitre">Service client</p>
+        <h1>Une question ?</h1>
+        <p>Suivi de commande, retour d'un avion, devis pour une flotte entière : notre équipe vous répond.</p>
+      </div>
+    </section>
+      <section class="section">
+        <div class="conteneur contact-grille">
+          <section class="encadre" aria-labelledby="titre-formulaire">
+            <h2 id="titre-formulaire">Nous écrire</h2>
+            <form class="formulaire" action="Contact.html" method="get">
+              <label class="champ" for="prenom">Prénom
+                <input type="text" name="prenom" id="prenom" autocomplete="given-name" required />
+              </label>
+              <label class="champ" for="email">Adresse e-mail
+                <input type="email" name="email" id="email" autocomplete="email" placeholder="vous@exemple.fr" required />
+              </label>
+              <label class="champ" for="numero-commande">N° de commande <span class="remarque">(facultatif)</span>
+                <input type="text" name="commande" id="numero-commande" placeholder="DA-000000" />
+              </label>
+              <label class="champ" for="sujet">Sujet
+                <select name="sujet" id="sujet">
+                  <option>Suivi de ma commande</option>
+                  <option>Retour ou remboursement</option>
+                  <option>Question sur un produit</option>
+                  <option>Devis pour une flotte</option>
+                  <option>Autre</option>
+                </select>
+              </label>
+              <label class="champ champ-large" for="message">Message
+                <textarea name="message" id="message" required></textarea>
+              </label>
+              <div class="formulaire-boutons">
+                <button class="bouton" type="submit">Envoyer le message</button>
+                <button class="bouton bouton-clair" type="reset">Effacer</button>
+
+              </div>
+            </form>
+          </section>
+          <div class="colonne-droite">
+            <section class="encadre" aria-labelledby="titre-questions">
+              <h2 id="titre-questions">Questions fréquentes</h2>
+              <details class="question"><summary>La livraison est-elle vraiment offerte ?</summary><p>Oui : un pilote vous amène l&#x27;appareil en vol. Son billet de retour reste à votre charge.</p></details><details class="question"><summary>Puis-je retourner mon avion ?</summary><p>Oui, sous 30 jours, à condition qu&#x27;il n&#x27;ait pas volé et que le plein soit fait.</p></details><details class="question"><summary>Faut-il un permis ?</summary><p>Une licence de pilote pour l&#x27;avion et une licence d&#x27;exportation pour les armements.</p></details><details class="question"><summary>Les missiles sont-ils fournis avec l&#x27;avion ?</summary><p>Non, ils sont vendus séparément, comme les piles. Consultez la rubrique « Fréquemment achetés ensemble ».</p></details>
+            </section>
+            <section class="encadre" aria-labelledby="titre-siege">
+              <h2 id="titre-siege">Siège de Dassault Aviation</h2>
+              <address class="adresse">78 quai Marcel Dassault<br />92210 Saint-Cloud, France</address>
+              <iframe class="plan" title="Carte : Saint-Cloud, siège de Dassault Aviation" src="https://www.google.com/maps?q=78%20quai%20Marcel%20Dassault%2C%20Saint-Cloud&amp;output=embed" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="conteneur">
+        <div class="footer-grid">
+          <div>
+            <h2>Dassault Aviation</h2>
+            <p>La boutique en ligne où l'on achète un avion de chasse aussi facilement qu'une paire de chaussettes.</p>
+          </div>
+          <div>
+            <h2>Boutique</h2>
+            <ul>
+              <li><a href="Avions.html">Avions</a></li>
+              <li><a href="Missiles.html">Missiles</a></li>
+              <li><a href="Recherche.html">Comparatif</a></li>
+              <li><a href="Contact.html">Service client</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Siège de Dassault Aviation</h2>
+            <address>78 quai Marcel Dassault<br />92210 Saint-Cloud, France</address>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Évidemment, ce site est faux : je le précise pour les trois personnes du fond qui se sont perdues sur Internet.</p>
+          <button class="easter-egg" type="button" data-jeu-open title="Tiens, c'est cliquable ?"><img class="logo-vitality" src="static/image/logo_vita.svg" alt="Logo Vitality — lancer le mini-jeu" /></button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

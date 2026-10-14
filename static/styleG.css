@@ -1,0 +1,1231 @@
+/* ==========================================================================
+   Dassault Aviation — boutique
+   Thème sombre. Seul le mini-jeu caché (static/jeu.js) utilise du JavaScript.
+   ========================================================================== */
+
+:root {
+  --fond: #0b131b;
+  --surface: #121d28;
+  --texte: #e6edf3;
+  --gris: #9aabbb;
+  --bordure: #243444;
+  --bleu: #4f86ec;
+  --rouge: #d1343f;
+  --nuit: #07111b;
+  --titre: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font: 17px/1.6 "Barlow", system-ui, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--titre);
+  line-height: 1.1;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--bleu);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.conteneur {
+  width: min(100% - 32px, 1180px);
+  margin-inline: auto;
+}
+
+.cache-visuellement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.discret,
+.remarque {
+  color: var(--gris);
+  font-size: 14px;
+}
+
+/* ---------- En-tête ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--nuit);
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, var(--bleu) 33%, #fff 33% 66%, var(--rouge) 66%) 1;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+}
+
+.marque {
+  color: #fff;
+  font-family: var(--titre);
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.marque strong {
+  margin-right: 8px;
+  font-size: 26px;
+}
+
+.header-nav a {
+  display: inline-block;
+  padding: 10px 12px;
+  color: #c9d6e3;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.header-nav a:hover,
+.header-nav a[aria-current="page"] {
+  color: #fff;
+  box-shadow: inset 0 -2px var(--rouge);
+}
+
+/* ---------- Bandeaux ---------- */
+
+.accueil,
+.banniere,
+.fiche-banniere {
+  background: var(--nuit);
+  color: #fff;
+}
+
+.accueil {
+  padding: 260px 0 56px;
+  background: linear-gradient(transparent 30%, var(--nuit)), url(image/banniere_dassaultV2.jpg) center 40% / cover;
+}
+
+.banniere {
+  padding: 64px 0 48px;
+  background: linear-gradient(90deg, var(--nuit) 30%, transparent), url(image/banniere_dassaultV3.jpg) right / cover;
+}
+
+.accueil h1,
+.banniere h1,
+.fiche-banniere h1 {
+  font-size: clamp(40px, 7vw, 84px);
+}
+
+.accueil p,
+.banniere p,
+.chapeau {
+  max-width: 60ch;
+  color: #c9d6e3;
+  font-size: 18px;
+}
+
+.surtitre {
+  margin: 0 0 10px;
+  color: #8fb3ff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---------- Boutons ---------- */
+
+.bouton {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--bleu);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bouton-transparent {
+  border-color: rgb(255 255 255 / 45%);
+  background: transparent;
+}
+
+.bouton-clair {
+  border-color: var(--bordure);
+  background: var(--surface);
+  color: var(--texte);
+}
+
+.bouton-acheter {
+  width: 100%;
+  background: #f3c845;
+  color: #1d1a10;
+}
+
+.bouton-acheter:disabled {
+  background: #24303b;
+  color: #7c8995;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: 64px 0;
+}
+
+.section-compacte {
+  padding: 40px 0;
+}
+
+.section-sombre {
+  background: var(--nuit);
+}
+
+.section-promos {
+  background: linear-gradient(#24161a, var(--fond));
+}
+
+.section-titre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.section-titre h2 {
+  font-size: 44px;
+}
+
+.section-titre p {
+  margin: 8px 0 0;
+  color: var(--gris);
+}
+
+/* ---------- Accueil : chiffres et frise ---------- */
+
+.chiffres,
+.frise {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chiffre {
+  padding: 24px;
+  border-radius: 14px;
+  background: #0e1f2e;
+}
+
+.frise li {
+  position: relative;
+  padding: 24px 20px 0 0;
+  border-top: 2px solid var(--bordure);
+}
+
+/* Point rouge sur la ligne pour chaque date */
+.frise li::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rouge);
+  box-shadow: 0 0 0 4px var(--nuit);
+}
+
+.chiffre strong,
+.frise strong {
+  display: block;
+  font-family: var(--titre);
+  font-size: 44px;
+  line-height: 1;
+}
+
+.chiffre span,
+.frise span {
+  color: #b7c6d5;
+  font-size: 15px;
+}
+
+/* ---------- Cartes produits ---------- */
+
+.cards,
+.grille-missiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 24px;
+}
+
+.card,
+.carte-missile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--bordure);
+  border-radius: 14px;
+  background: var(--surface);
+  transition: translate 0.3s, box-shadow 0.3s;
+}
+
+.card:hover,
+.carte-missile:hover {
+  translate: 0 -4px;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 50%);
+}
+
+.cadre-image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #1a2c3d;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  background: center / cover;
+  transition: scale 0.6s;
+}
+
+.card:hover .photo {
+  scale: 1.05;
+}
+
+.cadre-dessin {
+  display: grid;
+  place-items: center;
+  padding: 6%;
+  background: radial-gradient(#fff, #e9edf1);
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 22px;
+}
+
+.card h3,
+.carte-missile h3 {
+  margin: 6px 0;
+  font-size: 30px;
+}
+
+.card h3 a,
+.carte-missile h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Le lien du titre s'étend sur toute la carte : elle devient cliquable */
+.card h3 a::after,
+.carte-missile h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-text,
+.carte-missile-description {
+  color: var(--gris);
+}
+
+.card-more {
+  margin-top: auto;
+  color: var(--bleu);
+  font-weight: 700;
+}
+
+.card-badge {
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  left: 14px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: #f3c845;
+  color: #1d1a10;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Étiquettes */
+.etiquettes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.etiquette {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #1d2c40;
+  color: #a9c4ef;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.etiquette-neuf {
+  background: #163527;
+  color: #4cc38a;
+}
+
+.etiquette-occasion {
+  background: #3a2e1a;
+  color: #e0b878;
+}
+
+.etiquette-indisponible {
+  background: #222c36;
+  color: var(--gris);
+}
+
+.etiquette-promo {
+  background: var(--rouge);
+  color: #fff;
+}
+
+/* Note, caractéristiques, prix */
+.rating {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.stars {
+  margin-right: 6px;
+  color: #f0a71f;
+}
+
+.caracteristiques-cles,
+.chiffres-cles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.caracteristiques-cles {
+  padding-top: 12px;
+  border-top: 1px solid var(--bordure);
+}
+
+.caracteristiques-cles dt,
+.chiffres-cles dt {
+  color: var(--gris);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.caracteristiques-cles dd,
+.chiffres-cles dd,
+.prix,
+.buy-price {
+  margin: 0;
+  font-family: var(--titre);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.prix {
+  font-size: 28px;
+}
+
+.prix small {
+  display: block;
+  color: var(--gris);
+  font: 13px "Barlow", sans-serif;
+}
+
+.prix s {
+  margin-left: 8px;
+  color: var(--gris);
+  font-size: 18px;
+}
+
+.livraison,
+.stock {
+  margin: 0 0 16px;
+  color: #4cc38a;
+  font-weight: 600;
+}
+
+/* ---------- Cartes missiles ---------- */
+
+.carte-missile {
+  padding: 24px;
+}
+
+.carte-missile-haut {
+  display: flex;
+  justify-content: space-between;
+}
+
+.carte-missile-type {
+  margin: 0;
+  color: var(--gris);
+  font-size: 14px;
+}
+
+.icone-categorie {
+  width: 32px;
+  fill: none;
+  stroke: var(--rouge);
+  stroke-width: 1.4;
+}
+
+.carte-missile-dessin {
+  margin: 18px 0;
+  padding: 34px 16px;
+  border-radius: 10px;
+  background: radial-gradient(#fff, #e9edf1);
+}
+
+.carte-missile-bas {
+  position: relative;
+  flex: 1;
+}
+
+.carte-missile-achat {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding-right: 72px;
+}
+
+.fleche {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--rouge);
+}
+
+.fleche svg {
+  width: 18px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.dessin-missile {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+/* ---------- Fiche produit ---------- */
+
+.fiche-banniere {
+  padding: 40px 0 56px;
+}
+
+.fil-ariane {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 0;
+  font-size: 14px;
+  list-style: none;
+}
+
+.fil-ariane li + li::before {
+  content: "/ ";
+}
+
+.fil-ariane a,
+.fil-ariane li {
+  color: #c9d6e3;
+  text-decoration: none;
+}
+
+.fiche-presentation {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.fiche-banniere .cadre-image {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.fiche-banniere .chiffres-cles {
+  margin-top: 20px;
+}
+
+.chiffres-cles div {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #0e1f2e;
+}
+
+.fiche-prix {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.fiche-contenu {
+  display: grid;
+  grid-template-columns: 1.5fr minmax(300px, 1fr);
+  align-items: start;
+  gap: 40px;
+  padding: 56px 0;
+}
+
+.texte h2 {
+  margin: 36px 0 14px;
+  font-size: 32px;
+}
+
+.liens-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.liens-pastilles a {
+  padding: 8px 16px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  color: var(--texte);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.liens-pastilles small {
+  margin-left: 8px;
+  color: var(--gris);
+}
+
+.avis-client,
+.encadre,
+.fiche-technique,
+.buy,
+.tableau-defilant {
+  margin-bottom: 16px;
+  border: 1px solid var(--bordure);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.avis-client {
+  padding: 16px 20px;
+}
+
+.avis-client p {
+  margin: 4px 0;
+}
+
+.sources {
+  margin-top: 40px;
+  padding: 16px 22px;
+  border-left: 3px solid var(--bleu);
+  background: #16263a;
+}
+
+.texte .sources h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.navigation-fiches {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.fiche-technique,
+.tableau-defilant {
+  overflow: auto;
+}
+
+.fiche-technique h2 {
+  padding: 16px 22px;
+  background: #1d2c40;
+  font-size: 22px;
+}
+
+.tableau-technique,
+.tableau-comparatif {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.tableau-technique th,
+.tableau-technique td,
+.tableau-comparatif th,
+.tableau-comparatif td {
+  padding: 10px 18px;
+  border-top: 1px solid var(--bordure);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tableau-technique th {
+  width: 44%;
+  color: var(--gris);
+  font-weight: 500;
+}
+
+/* ---------- Encadré d'achat ---------- */
+
+.buy {
+  padding: 24px;
+  border: 2px solid var(--bleu);
+}
+
+.buy-price {
+  font-size: 34px;
+}
+
+.buy-price small,
+.prix-remarque {
+  display: block;
+  color: var(--gris);
+  font: 13px/1.4 "Barlow", sans-serif;
+}
+
+.stock {
+  margin: 12px 0 0;
+}
+
+.stock-limite {
+  color: var(--rouge);
+}
+
+.stock-indisponible {
+  color: var(--gris);
+}
+
+/* Le prix affiché suit la version choisie */
+.prix-version {
+  display: none;
+}
+
+.buy:has(#version-1:checked) .prix-version-1,
+.buy:has(#version-2:checked) .prix-version-2,
+.buy:has(#version-3:checked) .prix-version-3 {
+  display: inline;
+}
+
+.buy-version {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #1a2633;
+  font-weight: 600;
+}
+
+.buy-group {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.buy-group legend {
+  margin-bottom: 8px;
+  color: var(--gris);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.option:has(input:checked) {
+  border-color: var(--bleu);
+  background: #182a42;
+}
+
+.option span {
+  flex: 1;
+}
+
+.quantites {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.quantite input {
+  position: absolute;
+  opacity: 0;
+}
+
+.quantite span {
+  display: grid;
+  place-items: center;
+  min-height: 56px;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  font: 700 22px/1.1 var(--titre);
+  cursor: pointer;
+}
+
+.quantite small {
+  color: var(--gris);
+  font: 11px "Barlow", sans-serif;
+}
+
+.quantite input:checked + span {
+  background: var(--bleu);
+}
+
+/* ---------- Comparatif ---------- */
+
+.tableau-comparatif {
+  min-width: 760px;
+}
+
+.tableau-comparatif caption {
+  padding: 18px;
+  font: 700 26px var(--titre);
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tableau-comparatif th,
+.tableau-comparatif td {
+  white-space: nowrap;
+}
+
+.tableau-comparatif thead th {
+  background: #1d2c40;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.tableau-comparatif tbody tr:nth-child(even) {
+  background: #15212d;
+}
+
+.tableau-comparatif tbody a {
+  color: var(--texte);
+  font-weight: 700;
+}
+
+/* ---------- Contact ---------- */
+
+.contact-grille {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: start;
+  gap: 28px;
+}
+
+.encadre {
+  padding: 28px;
+}
+
+.formulaire {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.champ {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.champ-large,
+.formulaire-boutons {
+  grid-column: 1 / -1;
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  padding: 12px 14px;
+  border: 1px solid #33475a;
+  border-radius: 10px;
+  background: #0f1923;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+.champ textarea {
+  min-height: 160px;
+}
+
+.question summary {
+  padding: 12px 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.question p {
+  color: var(--gris);
+}
+
+.adresse {
+  font-style: normal;
+}
+
+.plan {
+  width: 100%;
+  min-height: 280px;
+  border: 0;
+  border-radius: 10px;
+}
+
+/* ---------- Pied de page ---------- */
+
+.site-footer {
+  padding: 48px 0 28px;
+  background: var(--nuit);
+  color: #b7c6d5;
+  font-size: 15px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 32px;
+}
+
+.site-footer h2 {
+  font-size: 18px;
+}
+
+.site-footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer a {
+  color: #dbe5ef;
+  text-decoration: none;
+}
+
+.site-footer address {
+  font-style: normal;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--bordure);
+  color: #7f95aa;
+  font-size: 13px;
+}
+
+.easter-egg {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.logo-vitality {
+  width: 26px;
+  filter: invert(1);
+  transition: rotate 0.3s;
+}
+
+.easter-egg:hover .logo-vitality {
+  rotate: -12deg;
+}
+
+/* ---------- Mini-jeu « Livreur en vol » (fenêtre créée par jeu.js) ---------- */
+
+.jeu {
+  width: min(100% - 24px, 1100px);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--nuit);
+  color: #fff;
+}
+
+.jeu::backdrop {
+  background: rgb(7 17 27 / 75%);
+}
+
+.jeu-top,
+.jeu-stats,
+.jeu-pseudo,
+.jeu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.jeu-top,
+.jeu-msg,
+.jeu-ordre {
+  margin: 0;
+  padding: 14px 20px;
+}
+
+.jeu-stats span,
+.jeu-mode,
+.jeu-pseudo input {
+  padding: 6px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 10px;
+  background: #0e1f2e;
+  color: #fff;
+  font: inherit;
+}
+
+.jeu-close,
+.jeu-tabs button {
+  padding: 6px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.jeu-tabs [aria-pressed="true"],
+.jeu-classement .moi {
+  border-color: #f3c845;
+  color: #f3c845;
+}
+
+.jeu-ordre {
+  background: #f3c845;
+  color: #1d1a10;
+  font-weight: 600;
+}
+
+.jeu-timer span {
+  display: block;
+  height: 5px;
+  background: var(--rouge);
+  transform-origin: left;
+}
+
+.jeu-carte svg {
+  display: block;
+  width: 100%;
+  cursor: crosshair;
+}
+
+.jeu-carte .pays {
+  fill: #2f4a63;
+  stroke: #0b2238;
+  stroke-width: 0.5;
+}
+
+.jeu-carte .pays:hover {
+  fill: #4a6f93;
+}
+
+.jeu-carte .cible {
+  fill: #1f8a5b;
+}
+
+.jeu-carte .rate,
+.jeu-carte .base {
+  fill: var(--rouge);
+}
+
+.jeu-carte .trajet {
+  fill: none;
+  stroke: #f3c845;
+  stroke-dasharray: 4 4;
+  stroke-width: 1.5;
+}
+
+.jeu-carte .danger {
+  stroke: var(--rouge);
+}
+
+.jeu-carte .base-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.jeu-carte .etape {
+  fill: #f3c845;
+}
+
+.jeu-carte .orage {
+  fill: rgb(126 87 194 / 45%);
+  stroke: #b39ddb;
+}
+
+.jeu-carte text {
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.jeu-msg.ok {
+  color: #8fe0b5;
+}
+
+.jeu-msg.ko {
+  color: #ffb4b9;
+}
+
+.jeu-actions {
+  padding: 0 20px 20px;
+}
+
+.jeu-ecran {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.jeu-ecran h3 {
+  font-size: 40px;
+}
+
+.jeu-score {
+  font: 700 64px var(--titre);
+}
+
+.jeu-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.jeu-mode {
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.jeu-mode:disabled {
+  opacity: 0.55;
+}
+
+.jeu-mode strong {
+  display: block;
+  font: 700 22px var(--titre);
+}
+
+.jeu-classement {
+  max-width: 520px;
+  margin: 18px auto 0;
+}
+
+.jeu-classement ol {
+  padding: 0;
+  list-style: none;
+}
+
+.jeu-classement li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+    translate: 0 40px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Bandeaux : entrée au chargement de la page */
+  .accueil .conteneur,
+  .banniere .conteneur,
+  .fiche-presentation {
+    animation: apparition 0.8s ease-out;
+  }
+
+  /* Blocs : apparition au fil du défilement (navigateurs compatibles) */
+  @supports (animation-timeline: view()) {
+    .card,
+    .carte-missile,
+    .avis-client,
+    .chiffre,
+    .frise li,
+    .tableau-defilant {
+      animation: apparition linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+/* ---------- Petits écrans ---------- */
+
+@media (max-width: 900px) {
+  .site-header {
+    position: static;
+  }
+
+  .fiche-presentation,
+  .fiche-contenu,
+  .contact-grille,
+  .footer-grid,
+  .formulaire,
+  .jeu-modes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
